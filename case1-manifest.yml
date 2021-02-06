@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-ux-services-information
+  namespace: ux
+spec:
+  ports:
+    - port: 7000
+      targetPort: 7000
+  selector:
+    app: ms-ux-services-information
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-ux-services-information
+  namespace: ux
+  labels:
+    app: ms-ux-services-information
+spec:
+  selector:
+    matchLabels:
+      app: ms-ux-services-information
+  template:
+    metadata:
+      labels:
+        app: ms-ux-services-information
+    spec:
+      containers:
+      - image: {name_repository}/{name_image}:{tag}
+        name: ms-ux-services-information
+        ports:
+        - containerPort: 7000
+        env:
+         - name: {NAME_PROPERTIES_VALUE}
+           value: http://10.110.31.59:7000
