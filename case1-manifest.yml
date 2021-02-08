@@ -34,4 +34,4 @@ spec:
         - containerPort: 7000
         env:
          - name: {NAME_PROPERTIES_VALUE}
-           value: http://10.110.31.59:7000
+           value: http://10.96.0.115:8001
